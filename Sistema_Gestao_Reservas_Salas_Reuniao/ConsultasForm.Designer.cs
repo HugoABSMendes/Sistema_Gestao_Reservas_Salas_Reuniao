@@ -29,14 +29,98 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConsultasForm));
+            lb_reserva = new ListBox();
+            btn_criarReserva = new Button();
+            btn_apagarReserva = new Button();
+            cb_ordenarFuncionario = new CheckBox();
+            cb_ordenarSala = new CheckBox();
+            combox_SalaFuncionario = new ComboBox();
+            label3 = new Label();
             SuspendLayout();
+            // 
+            // lb_reserva
+            // 
+            lb_reserva.FormattingEnabled = true;
+            lb_reserva.ItemHeight = 18;
+            lb_reserva.Location = new Point(12, 70);
+            lb_reserva.Name = "lb_reserva";
+            lb_reserva.Size = new Size(456, 346);
+            lb_reserva.TabIndex = 0;
+            // 
+            // btn_criarReserva
+            // 
+            btn_criarReserva.BackColor = SystemColors.GradientInactiveCaption;
+            btn_criarReserva.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_criarReserva.Location = new Point(12, 519);
+            btn_criarReserva.Name = "btn_criarReserva";
+            btn_criarReserva.Size = new Size(202, 67);
+            btn_criarReserva.TabIndex = 1;
+            btn_criarReserva.Text = "Criar Nova Reserva";
+            btn_criarReserva.UseVisualStyleBackColor = false;
+            // 
+            // btn_apagarReserva
+            // 
+            btn_apagarReserva.BackColor = SystemColors.GradientInactiveCaption;
+            btn_apagarReserva.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_apagarReserva.Location = new Point(266, 519);
+            btn_apagarReserva.Name = "btn_apagarReserva";
+            btn_apagarReserva.Size = new Size(202, 67);
+            btn_apagarReserva.TabIndex = 2;
+            btn_apagarReserva.Text = "Apagar Reserva";
+            btn_apagarReserva.UseVisualStyleBackColor = false;
+            // 
+            // cb_ordenarFuncionario
+            // 
+            cb_ordenarFuncionario.Location = new Point(266, 422);
+            cb_ordenarFuncionario.Name = "cb_ordenarFuncionario";
+            cb_ordenarFuncionario.RightToLeft = RightToLeft.Yes;
+            cb_ordenarFuncionario.Size = new Size(202, 22);
+            cb_ordenarFuncionario.TabIndex = 3;
+            cb_ordenarFuncionario.Text = "Ordenar por Funcionario";
+            cb_ordenarFuncionario.UseVisualStyleBackColor = true;
+            // 
+            // cb_ordenarSala
+            // 
+            cb_ordenarSala.Location = new Point(12, 422);
+            cb_ordenarSala.Name = "cb_ordenarSala";
+            cb_ordenarSala.Size = new Size(202, 22);
+            cb_ordenarSala.TabIndex = 4;
+            cb_ordenarSala.Text = "Ordenar por Sala";
+            cb_ordenarSala.UseVisualStyleBackColor = true;
+            // 
+            // combox_SalaFuncionario
+            // 
+            combox_SalaFuncionario.FormattingEnabled = true;
+            combox_SalaFuncionario.Location = new Point(12, 450);
+            combox_SalaFuncionario.Name = "combox_SalaFuncionario";
+            combox_SalaFuncionario.Size = new Size(456, 26);
+            combox_SalaFuncionario.TabIndex = 5;
+            // 
+            // label3
+            // 
+            label3.BackColor = SystemColors.ButtonShadow;
+            label3.BorderStyle = BorderStyle.FixedSingle;
+            label3.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(12, 9);
+            label3.Name = "label3";
+            label3.Size = new Size(456, 50);
+            label3.TabIndex = 16;
+            label3.Text = "Reservas de Salas:";
+            label3.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // ConsultasForm
             // 
             AutoScaleDimensions = new SizeF(9F, 18F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.AppWorkspace;
-            ClientSize = new Size(1028, 540);
+            ClientSize = new Size(480, 598);
+            Controls.Add(label3);
+            Controls.Add(combox_SalaFuncionario);
+            Controls.Add(cb_ordenarSala);
+            Controls.Add(cb_ordenarFuncionario);
+            Controls.Add(btn_apagarReserva);
+            Controls.Add(btn_criarReserva);
+            Controls.Add(lb_reserva);
             Font = new Font("Arial", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "ConsultasForm";
@@ -45,5 +129,13 @@
         }
 
         #endregion
+
+        private ListBox lb_reserva;
+        private Button btn_criarReserva;
+        private Button btn_apagarReserva;
+        private CheckBox cb_ordenarFuncionario;
+        private CheckBox cb_ordenarSala;
+        private ComboBox combox_SalaFuncionario;
+        private Label label3;
     }
 }

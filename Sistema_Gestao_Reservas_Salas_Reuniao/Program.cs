@@ -11,7 +11,7 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new ConsultasForm());
+            Application.Run(new GestaoReservasForm());
         }
     }
 }
