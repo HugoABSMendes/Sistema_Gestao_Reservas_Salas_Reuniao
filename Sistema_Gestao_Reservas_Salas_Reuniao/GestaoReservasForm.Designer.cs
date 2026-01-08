@@ -151,14 +151,18 @@
             dtp_dataInicioReserva.Name = "dtp_dataInicioReserva";
             dtp_dataInicioReserva.Size = new Size(126, 25);
             dtp_dataInicioReserva.TabIndex = 9;
+            dtp_dataInicioReserva.Value = new DateTime(2026, 1, 1, 0, 0, 0, 0);
+            dtp_dataInicioReserva.ValueChanged += dtp_dataInicioReserva_ValueChanged;
             // 
             // dtp_horaInicioReserva
             // 
             dtp_horaInicioReserva.Format = DateTimePickerFormat.Time;
             dtp_horaInicioReserva.Location = new Point(485, 279);
             dtp_horaInicioReserva.Name = "dtp_horaInicioReserva";
+            dtp_horaInicioReserva.ShowUpDown = true;
             dtp_horaInicioReserva.Size = new Size(126, 25);
             dtp_horaInicioReserva.TabIndex = 10;
+            dtp_horaInicioReserva.Value = new DateTime(2026, 1, 1, 0, 0, 0, 0);
             // 
             // label1
             // 
@@ -187,8 +191,10 @@
             dtp_horaFimReserva.Format = DateTimePickerFormat.Time;
             dtp_horaFimReserva.Location = new Point(485, 392);
             dtp_horaFimReserva.Name = "dtp_horaFimReserva";
+            dtp_horaFimReserva.ShowUpDown = true;
             dtp_horaFimReserva.Size = new Size(126, 25);
             dtp_horaFimReserva.TabIndex = 13;
+            dtp_horaFimReserva.Value = new DateTime(2030, 1, 1, 0, 0, 0, 0);
             // 
             // dtp_dataFimReserva
             // 
@@ -197,6 +203,8 @@
             dtp_dataFimReserva.Name = "dtp_dataFimReserva";
             dtp_dataFimReserva.Size = new Size(126, 25);
             dtp_dataFimReserva.TabIndex = 12;
+            dtp_dataFimReserva.Value = new DateTime(2030, 1, 1, 0, 0, 0, 0);
+            dtp_dataFimReserva.ValueChanged += dtp_dataFimReserva_ValueChanged;
             // 
             // label3
             // 
