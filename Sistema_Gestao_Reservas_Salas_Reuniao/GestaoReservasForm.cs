@@ -14,7 +14,7 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
     public partial class GestaoReservasForm : Form
     {
         SqlConnector sqlConnector = new SqlConnector();
-        List<FuncionarioModel> funcionarios; 
+        List<FuncionarioModel> funcionarios;
 
         private DateTime DataInicio = new DateTime();
         private DateTime DataFim = new DateTime();
@@ -25,11 +25,32 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
             dtp_dataInicioReserva.CustomFormat = "MM/dd/yyyy                        HH:mm:ss";
             dtp_dataFimReserva.CustomFormat = "MM/dd/yyyy                       HH:mm:ss";
 
-            funcionarios = sqlConnector.ListarFuncionarios();
 
             InstanciarVariaveisDoForm();
 
+            WireUpLists();
 
+
+        }
+
+        public void WireUpLists()
+        {
+            funcionarios = sqlConnector.ListarFuncionarios();
+
+            lb_funcionario.DataSource = null;
+            lb_funcionario.DataSource = funcionarios;
+            lb_funcionario.DisplayMember = "nome";
+
+            if (lb_funcionario.Items == null)
+            {
+                btn_editarFuncionario.Enabled = false;
+                btn_apagarFuncionario.Enabled = false;
+            }
+            else
+            {
+                btn_editarFuncionario.Enabled = true;
+                btn_apagarFuncionario.Enabled = true;
+            }
         }
 
         private void btn_voltar_Click(object sender, EventArgs e)
@@ -41,14 +62,7 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
         {
             DataInicio = dtp_dataInicioReserva.Value;
             DataFim = dtp_dataFimReserva.Value;
-
-            lb_funcionario.DataSource = null;
-            lb_funcionario.DataSource = funcionarios;
-            lb_funcionario.DisplayMember = "nome";
-
         }
-
-
 
 
         private void dtp_dataInicioReserva_ValueChanged(object sender, EventArgs e)
@@ -56,7 +70,7 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
 
             if (dtp_dataInicioReserva.Value >= dtp_dataFimReserva.Value)
             {
-                MessageBox.Show("A data do inicio da reserva não pode ser maior que a data do Final da reserva.");
+                MessageBox.Show("A data do inicio da reserva não pode ser maior que a data do Final da reserva.", "Erro!");
                 dtp_dataInicioReserva.Value = DataInicio;
             }
 
@@ -67,7 +81,7 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
 
             if (dtp_dataInicioReserva.Value >= dtp_dataFimReserva.Value)
             {
-                MessageBox.Show("A data do inicio da reserva não pode ser maior que a data do Final da reserva.");
+                MessageBox.Show("A data do inicio da reserva não pode ser maior que a data do Final da reserva.", "Erro!");
                 dtp_dataFimReserva.Value = DataFim;
             }
 
@@ -77,10 +91,15 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
         {
             FuncionarioModel selecionado = (FuncionarioModel)lb_funcionario.SelectedItem;
 
-            GestaoFuncionariosForm frm = new GestaoFuncionariosForm(selecionado);
+            GestaoFuncionariosForm frm = new GestaoFuncionariosForm(selecionado, this);
             frm.Show();
         }
 
-        
+        private void btn_criarFuncionario_Click(object sender, EventArgs e)
+        {
+
+            GestaoFuncionariosForm frm = new GestaoFuncionariosForm(this);
+            frm.Show();
+        }
     }
 }

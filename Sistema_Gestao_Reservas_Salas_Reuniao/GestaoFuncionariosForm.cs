@@ -18,19 +18,23 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
         SqlConnector sqlConnector = new SqlConnector();
 
         FuncionarioModel funcionarioAEditar;
+        GestaoReservasForm formAnterior;
 
-        public GestaoFuncionariosForm()
+        public GestaoFuncionariosForm(GestaoReservasForm gRF)
         {
             InitializeComponent();
             editar = false;
+
+            formAnterior = gRF;
         }
 
-        public GestaoFuncionariosForm(FuncionarioModel selecionado)
+        public GestaoFuncionariosForm(FuncionarioModel selecionado, GestaoReservasForm gRF)
         {
             InitializeComponent();
             editar = true;
 
             funcionarioAEditar = selecionado;
+            formAnterior = gRF;
 
             tb_nomeFuncionario.Text = funcionarioAEditar.Nome;
             tb_emailFuncionario.Text = funcionarioAEditar.Email;
@@ -52,6 +56,7 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
                     FuncionarioModel model = new FuncionarioModel(tb_nomeFuncionario.Text, tb_emailFuncionario.Text, tb_departamentoFuncionario.Text);
 
                     sqlConnector.AdicionarFuncionario(model);
+                    formAnterior.WireUpLists();
 
                     this.Close();
 
@@ -62,6 +67,7 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
                         tb_departamentoFuncionario.Text);
 
                     sqlConnector.AtualizarFuncionario(model);
+                    formAnterior.WireUpLists();
 
                     this.Close();
 
@@ -70,7 +76,7 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
             }
             else
             {
-                MessageBox.Show("Algo está de errado no form. Por favor, valide o texto e tente novamente.");
+                MessageBox.Show("Algo está de errado no form. Por favor, valide o texto e tente novamente.", "Erro!");
             }    
 
         }

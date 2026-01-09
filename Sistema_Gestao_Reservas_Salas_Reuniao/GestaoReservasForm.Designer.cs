@@ -98,6 +98,7 @@
             btn_criarFuncionario.TabIndex = 4;
             btn_criarFuncionario.Text = "Criar";
             btn_criarFuncionario.UseVisualStyleBackColor = false;
+            btn_criarFuncionario.Click += btn_criarFuncionario_Click;
             // 
             // btn_editarSala
             // 
