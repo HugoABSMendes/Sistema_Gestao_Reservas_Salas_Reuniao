@@ -115,6 +115,7 @@
             btn_criarNovoFuncionario.TabIndex = 22;
             btn_criarNovoFuncionario.Text = "Criar Funcionário";
             btn_criarNovoFuncionario.UseVisualStyleBackColor = false;
+            btn_criarNovoFuncionario.Click += btn_criarNovoFuncionario_Click;
             // 
             // btn_cancelarFuncionario
             // 
@@ -126,6 +127,7 @@
             btn_cancelarFuncionario.TabIndex = 23;
             btn_cancelarFuncionario.Text = "Cancelar";
             btn_cancelarFuncionario.UseVisualStyleBackColor = false;
+            btn_cancelarFuncionario.Click += btn_cancelarFuncionario_Click;
             // 
             // GestaoFuncionariosForm
             // 

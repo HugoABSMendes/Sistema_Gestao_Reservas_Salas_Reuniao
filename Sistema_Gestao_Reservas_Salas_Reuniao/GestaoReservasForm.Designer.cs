@@ -39,10 +39,8 @@
             btn_criarSala = new Button();
             btn_criarReserva = new Button();
             dtp_dataInicioReserva = new DateTimePicker();
-            dtp_horaInicioReserva = new DateTimePicker();
             label1 = new Label();
             label2 = new Label();
-            dtp_horaFimReserva = new DateTimePicker();
             dtp_dataFimReserva = new DateTimePicker();
             label3 = new Label();
             label4 = new Label();
@@ -77,6 +75,7 @@
             btn_editarFuncionario.TabIndex = 2;
             btn_editarFuncionario.Text = "Editar";
             btn_editarFuncionario.UseVisualStyleBackColor = false;
+            btn_editarFuncionario.Click += btn_editarFuncionario_Click;
             // 
             // btn_apagarFuncionario
             // 
@@ -146,23 +145,13 @@
             // 
             // dtp_dataInicioReserva
             // 
-            dtp_dataInicioReserva.Format = DateTimePickerFormat.Short;
+            dtp_dataInicioReserva.Format = DateTimePickerFormat.Custom;
             dtp_dataInicioReserva.Location = new Point(351, 279);
             dtp_dataInicioReserva.Name = "dtp_dataInicioReserva";
-            dtp_dataInicioReserva.Size = new Size(126, 25);
+            dtp_dataInicioReserva.Size = new Size(260, 25);
             dtp_dataInicioReserva.TabIndex = 9;
             dtp_dataInicioReserva.Value = new DateTime(2026, 1, 1, 0, 0, 0, 0);
             dtp_dataInicioReserva.ValueChanged += dtp_dataInicioReserva_ValueChanged;
-            // 
-            // dtp_horaInicioReserva
-            // 
-            dtp_horaInicioReserva.Format = DateTimePickerFormat.Time;
-            dtp_horaInicioReserva.Location = new Point(485, 279);
-            dtp_horaInicioReserva.Name = "dtp_horaInicioReserva";
-            dtp_horaInicioReserva.ShowUpDown = true;
-            dtp_horaInicioReserva.Size = new Size(126, 25);
-            dtp_horaInicioReserva.TabIndex = 10;
-            dtp_horaInicioReserva.Value = new DateTime(2026, 1, 1, 0, 0, 0, 0);
             // 
             // label1
             // 
@@ -186,22 +175,12 @@
             label2.Text = "Hora do Fim da Reserva:";
             label2.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // dtp_horaFimReserva
-            // 
-            dtp_horaFimReserva.Format = DateTimePickerFormat.Time;
-            dtp_horaFimReserva.Location = new Point(485, 392);
-            dtp_horaFimReserva.Name = "dtp_horaFimReserva";
-            dtp_horaFimReserva.ShowUpDown = true;
-            dtp_horaFimReserva.Size = new Size(126, 25);
-            dtp_horaFimReserva.TabIndex = 13;
-            dtp_horaFimReserva.Value = new DateTime(2030, 1, 1, 0, 0, 0, 0);
-            // 
             // dtp_dataFimReserva
             // 
-            dtp_dataFimReserva.Format = DateTimePickerFormat.Short;
+            dtp_dataFimReserva.Format = DateTimePickerFormat.Custom;
             dtp_dataFimReserva.Location = new Point(351, 392);
             dtp_dataFimReserva.Name = "dtp_dataFimReserva";
-            dtp_dataFimReserva.Size = new Size(126, 25);
+            dtp_dataFimReserva.Size = new Size(260, 25);
             dtp_dataFimReserva.TabIndex = 12;
             dtp_dataFimReserva.Value = new DateTime(2030, 1, 1, 0, 0, 0, 0);
             dtp_dataFimReserva.ValueChanged += dtp_dataFimReserva_ValueChanged;
@@ -240,6 +219,7 @@
             btn_voltar.TabIndex = 17;
             btn_voltar.Text = "Voltar";
             btn_voltar.UseVisualStyleBackColor = false;
+            btn_voltar.Click += btn_voltar_Click;
             // 
             // GestaoReservasForm
             // 
@@ -251,10 +231,8 @@
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(dtp_horaFimReserva);
             Controls.Add(dtp_dataFimReserva);
             Controls.Add(label1);
-            Controls.Add(dtp_horaInicioReserva);
             Controls.Add(dtp_dataInicioReserva);
             Controls.Add(btn_criarReserva);
             Controls.Add(btn_criarSala);
@@ -284,10 +262,8 @@
         private Button btn_criarSala;
         private Button btn_criarReserva;
         private DateTimePicker dtp_dataInicioReserva;
-        private DateTimePicker dtp_horaInicioReserva;
         private Label label1;
         private Label label2;
-        private DateTimePicker dtp_horaFimReserva;
         private DateTimePicker dtp_dataFimReserva;
         private Label label3;
         private Label label4;

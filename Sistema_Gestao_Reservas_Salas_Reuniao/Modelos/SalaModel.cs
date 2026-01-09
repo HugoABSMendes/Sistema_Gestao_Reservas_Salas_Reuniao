@@ -15,5 +15,18 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao.Modelos
         public int Capacidade { get; set; }
 
         public string Localizacao { get; set; }
+
+
+
+        public SalaModel(string nome, int capacidade, string localizacao)
+        {
+
+
+            Nome = nome;
+
+            Capacidade = capacidade;
+
+            Localizacao = localizacao;
+        }
     }
 }
