@@ -15,6 +15,7 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
     public partial class GestaoFuncionariosForm : Form
     {
         bool editar;
+        string textoMessageBox = string.Empty;
         SqlConnector sqlConnector = new SqlConnector();
 
         FuncionarioModel funcionarioAEditar;
@@ -76,7 +77,7 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
             }
             else
             {
-                MessageBox.Show("Algo está de errado no form. Por favor, valide o texto e tente novamente.", "Erro!");
+                MessageBox.Show(textoMessageBox, "Erro!");
             }    
 
         }
@@ -88,14 +89,17 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
             if (tb_nomeFuncionario.Text.Length == 0)
             {
                 output = false;
+                textoMessageBox = "O nome do funcionário não pode ser nulo!";
             }
             if (tb_emailFuncionario.Text.Length == 0)
             {
                 output = false;
+                textoMessageBox = "O email do funcionário não pode ser nulo!";
             }
             if (tb_departamentoFuncionario.Text.Length == 0)
             {
                 output = false;
+                textoMessageBox = "O departamento do funcionário não pode ser nulo!";
             }
 
             string verificarEmail = @"^[^@]+@[^@]+\.[^@]+$";
@@ -103,6 +107,7 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
             if (Regex.IsMatch(tb_emailFuncionario.Text,verificarEmail) == false)
             {
                 output = false;
+                textoMessageBox = "O email do funcionário é invalido! Certifique-se que a formatação é valida e tente outra vez.";
             }
 
             return output;

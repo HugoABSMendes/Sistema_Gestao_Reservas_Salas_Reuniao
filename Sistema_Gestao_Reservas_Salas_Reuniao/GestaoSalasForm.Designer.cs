@@ -50,6 +50,7 @@
             btn_cancelarSala.TabIndex = 31;
             btn_cancelarSala.Text = "Cancelar";
             btn_cancelarSala.UseVisualStyleBackColor = false;
+            btn_cancelarSala.Click += btn_cancelarSala_Click;
             // 
             // btn_criarNovaSala
             // 
@@ -61,6 +62,7 @@
             btn_criarNovaSala.TabIndex = 30;
             btn_criarNovaSala.Text = "Criar Nova Sala";
             btn_criarNovaSala.UseVisualStyleBackColor = false;
+            btn_criarNovaSala.Click += btn_criarNovaSala_Click;
             // 
             // tb_localizaçãoSala
             // 

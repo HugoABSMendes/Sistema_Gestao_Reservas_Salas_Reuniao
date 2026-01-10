@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace Sistema_Gestao_Reservas_Salas_Reuniao
 {
 
-    public class SqlConnector : IDataConnection
+    public class SqlConnector
     {
         private const string db = "ProjetoProgramacaoCET106";
 

@@ -87,6 +87,7 @@
             btn_apagarFuncionario.TabIndex = 3;
             btn_apagarFuncionario.Text = "Apagar";
             btn_apagarFuncionario.UseVisualStyleBackColor = false;
+            btn_apagarFuncionario.Click += btn_apagarFuncionario_Click;
             // 
             // btn_criarFuncionario
             // 
@@ -110,6 +111,7 @@
             btn_editarSala.TabIndex = 5;
             btn_editarSala.Text = "Editar";
             btn_editarSala.UseVisualStyleBackColor = false;
+            btn_editarSala.Click += btn_editarSala_Click;
             // 
             // btn_apagarSala
             // 
@@ -121,6 +123,7 @@
             btn_apagarSala.TabIndex = 6;
             btn_apagarSala.Text = "Apagar";
             btn_apagarSala.UseVisualStyleBackColor = false;
+            btn_apagarSala.Click += btn_apagarSala_Click;
             // 
             // btn_criarSala
             // 
@@ -132,6 +135,7 @@
             btn_criarSala.TabIndex = 7;
             btn_criarSala.Text = "Criar";
             btn_criarSala.UseVisualStyleBackColor = false;
+            btn_criarSala.Click += btn_criarSala_Click;
             // 
             // btn_criarReserva
             // 
