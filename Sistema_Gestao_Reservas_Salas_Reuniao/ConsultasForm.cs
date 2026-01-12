@@ -23,11 +23,6 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
         public ConsultasForm()
         {
             InitializeComponent();
-
-            lb_reserva.DataSource = null;
-            lb_reserva.DataSource = reservas;
-            lb_reserva.DisplayMember = "nome";
-
         }
 
         private void cb_ordenarSala_CheckedChanged(object sender, EventArgs e)
@@ -90,6 +85,20 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
 
         private void combox_SalaFuncionario_SelectedIndexChanged(object sender, EventArgs e)
         {
+            WireUpReservas();
+        }
+
+        private void btn_apagarReserva_Click(object sender, EventArgs e)
+        {
+            ReservaModel selecionado = (ReservaModel)lb_reserva.SelectedItem;
+
+            sqlConnector.CancelarReserva(selecionado);
+
+            WireUpReservas();
+        }
+
+        private void WireUpReservas()
+        {
             if (cb_ordenarSala.Checked && cb_ordenarFuncionario.Checked == false)
             {
 
@@ -112,7 +121,13 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
                 lb_reserva.DisplayMember = "DescricaoPorFuncionario";
 
             }
+            else
+            {
+                lb_reserva.DataSource = null;
+            }
         }
+
+
 
         private void btn_criarReserva_Click(object sender, EventArgs e)
         {
@@ -122,6 +137,5 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
             frm.Show();
         }
 
-        
     }
 }

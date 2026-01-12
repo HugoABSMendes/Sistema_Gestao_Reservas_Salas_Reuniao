@@ -69,6 +69,7 @@
             btn_apagarReserva.TabIndex = 2;
             btn_apagarReserva.Text = "Apagar Reserva";
             btn_apagarReserva.UseVisualStyleBackColor = false;
+            btn_apagarReserva.Click += btn_apagarReserva_Click;
             // 
             // cb_ordenarFuncionario
             // 
