@@ -44,7 +44,7 @@
             lb_reserva.ItemHeight = 18;
             lb_reserva.Location = new Point(12, 70);
             lb_reserva.Name = "lb_reserva";
-            lb_reserva.Size = new Size(456, 346);
+            lb_reserva.Size = new Size(754, 346);
             lb_reserva.TabIndex = 0;
             // 
             // btn_criarReserva
@@ -57,12 +57,13 @@
             btn_criarReserva.TabIndex = 1;
             btn_criarReserva.Text = "Criar Nova Reserva";
             btn_criarReserva.UseVisualStyleBackColor = false;
+            btn_criarReserva.Click += btn_criarReserva_Click;
             // 
             // btn_apagarReserva
             // 
             btn_apagarReserva.BackColor = SystemColors.GradientInactiveCaption;
             btn_apagarReserva.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btn_apagarReserva.Location = new Point(266, 519);
+            btn_apagarReserva.Location = new Point(564, 519);
             btn_apagarReserva.Name = "btn_apagarReserva";
             btn_apagarReserva.Size = new Size(202, 67);
             btn_apagarReserva.TabIndex = 2;
@@ -71,13 +72,14 @@
             // 
             // cb_ordenarFuncionario
             // 
-            cb_ordenarFuncionario.Location = new Point(266, 422);
+            cb_ordenarFuncionario.Location = new Point(564, 422);
             cb_ordenarFuncionario.Name = "cb_ordenarFuncionario";
             cb_ordenarFuncionario.RightToLeft = RightToLeft.Yes;
             cb_ordenarFuncionario.Size = new Size(202, 22);
             cb_ordenarFuncionario.TabIndex = 3;
             cb_ordenarFuncionario.Text = "Ordenar por Funcionario";
             cb_ordenarFuncionario.UseVisualStyleBackColor = true;
+            cb_ordenarFuncionario.CheckedChanged += cb_ordenarFuncionario_CheckedChanged;
             // 
             // cb_ordenarSala
             // 
@@ -87,14 +89,16 @@
             cb_ordenarSala.TabIndex = 4;
             cb_ordenarSala.Text = "Ordenar por Sala";
             cb_ordenarSala.UseVisualStyleBackColor = true;
+            cb_ordenarSala.CheckedChanged += cb_ordenarSala_CheckedChanged;
             // 
             // combox_SalaFuncionario
             // 
             combox_SalaFuncionario.FormattingEnabled = true;
             combox_SalaFuncionario.Location = new Point(12, 450);
             combox_SalaFuncionario.Name = "combox_SalaFuncionario";
-            combox_SalaFuncionario.Size = new Size(456, 26);
+            combox_SalaFuncionario.Size = new Size(754, 26);
             combox_SalaFuncionario.TabIndex = 5;
+            combox_SalaFuncionario.SelectedIndexChanged += combox_SalaFuncionario_SelectedIndexChanged;
             // 
             // label3
             // 
@@ -103,7 +107,7 @@
             label3.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.Location = new Point(12, 9);
             label3.Name = "label3";
-            label3.Size = new Size(456, 50);
+            label3.Size = new Size(754, 50);
             label3.TabIndex = 16;
             label3.Text = "Reservas de Salas:";
             label3.TextAlign = ContentAlignment.MiddleCenter;
@@ -113,7 +117,7 @@
             AutoScaleDimensions = new SizeF(9F, 18F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.AppWorkspace;
-            ClientSize = new Size(480, 598);
+            ClientSize = new Size(778, 598);
             Controls.Add(label3);
             Controls.Add(combox_SalaFuncionario);
             Controls.Add(cb_ordenarSala);

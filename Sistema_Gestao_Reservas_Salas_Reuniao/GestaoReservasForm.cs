@@ -17,9 +17,6 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
         List<FuncionarioModel> funcionarios;
         List<SalaModel> salas;
 
-        private DateTime DataInicio = new DateTime();
-        private DateTime DataFim = new DateTime();
-
         public GestaoReservasForm()
         {
             InitializeComponent();
@@ -27,10 +24,7 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
             dtp_dataFimReserva.CustomFormat = "MM/dd/yyyy                       HH:mm:ss";
 
 
-            InstanciarVariaveisDoForm();
-
             WireUpLists();
-
 
         }
 
@@ -77,35 +71,6 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
         private void btn_voltar_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void InstanciarVariaveisDoForm()
-        {
-            DataInicio = dtp_dataInicioReserva.Value;
-            DataFim = dtp_dataFimReserva.Value;
-        }
-
-
-        private void dtp_dataInicioReserva_ValueChanged(object sender, EventArgs e)
-        {
-
-            if (dtp_dataInicioReserva.Value >= dtp_dataFimReserva.Value)
-            {
-                MessageBox.Show("A data do inicio da reserva não pode ser maior que a data do Final da reserva.", "Erro!");
-                dtp_dataInicioReserva.Value = DataInicio;
-            }
-
-        }
-
-        private void dtp_dataFimReserva_ValueChanged(object sender, EventArgs e)
-        {
-
-            if (dtp_dataInicioReserva.Value >= dtp_dataFimReserva.Value)
-            {
-                MessageBox.Show("A data do inicio da reserva não pode ser maior que a data do Final da reserva.", "Erro!");
-                dtp_dataFimReserva.Value = DataFim;
-            }
-
         }
 
         //---------
@@ -156,5 +121,45 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
             sqlConnector.RemoverSala(selecionado);
             WireUpLists();
         }
+
+        private void btn_criarReserva_Click(object sender, EventArgs e)
+        {
+            if (lb_sala.SelectedItem != null)
+            {
+                if (lb_funcionario.SelectedItem != null)
+                {
+                    if (dtp_dataInicioReserva.Value <= dtp_dataFimReserva.Value)
+                    {
+
+                        FuncionarioModel funcSelecionado = (FuncionarioModel)lb_funcionario.SelectedItem;
+                        SalaModel salaSelecionado = (SalaModel)lb_sala.SelectedItem;
+
+                        ReservaModel model = new ReservaModel(funcSelecionado.IdFuncionario, salaSelecionado.IdSala, dtp_dataInicioReserva.Value, dtp_dataFimReserva.Value);
+
+                        sqlConnector.ReservarSala(model);
+
+                        MessageBox.Show("Reserva criada com Sucesso!","Sucesso!");
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("A data do inicio da reserva não pode ser maior que a data do Final da reserva.", "Erro!");
+                    }                 
+                }
+                else
+                {
+                    MessageBox.Show("Selecione um Funcionário da lista!", "Erro!");
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Selecione uma sala da lista!", "Erro!");
+            }
+
+        }
+
+
+
     }
 }

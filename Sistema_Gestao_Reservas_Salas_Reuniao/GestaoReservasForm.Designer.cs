@@ -147,6 +147,7 @@
             btn_criarReserva.TabIndex = 8;
             btn_criarReserva.Text = "Criar Reserva";
             btn_criarReserva.UseVisualStyleBackColor = false;
+            btn_criarReserva.Click += btn_criarReserva_Click;
             // 
             // dtp_dataInicioReserva
             // 
@@ -156,7 +157,6 @@
             dtp_dataInicioReserva.Size = new Size(260, 25);
             dtp_dataInicioReserva.TabIndex = 9;
             dtp_dataInicioReserva.Value = new DateTime(2026, 1, 1, 0, 0, 0, 0);
-            dtp_dataInicioReserva.ValueChanged += dtp_dataInicioReserva_ValueChanged;
             // 
             // label1
             // 
@@ -188,7 +188,6 @@
             dtp_dataFimReserva.Size = new Size(260, 25);
             dtp_dataFimReserva.TabIndex = 12;
             dtp_dataFimReserva.Value = new DateTime(2030, 1, 1, 0, 0, 0, 0);
-            dtp_dataFimReserva.ValueChanged += dtp_dataFimReserva_ValueChanged;
             // 
             // label3
             // 
