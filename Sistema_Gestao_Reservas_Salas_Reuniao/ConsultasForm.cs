@@ -23,6 +23,8 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
         public ConsultasForm()
         {
             InitializeComponent();
+
+            WireUpReservas();
         }
 
         private void cb_ordenarSala_CheckedChanged(object sender, EventArgs e)
@@ -90,16 +92,25 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
 
         private void btn_apagarReserva_Click(object sender, EventArgs e)
         {
-            ReservaModel selecionado = (ReservaModel)lb_reserva.SelectedItem;
+            if (lb_reserva.SelectedItem != null)
+            {
+                ReservaModel selecionado = (ReservaModel)lb_reserva.SelectedItem;
 
-            sqlConnector.CancelarReserva(selecionado);
+                sqlConnector.CancelarReserva(selecionado);
 
-            WireUpReservas();
+                WireUpReservas();
+            }
+            else
+            {
+                MessageBox.Show("Não existe nenhuma reserva a apagar!","Erro!");
+            }
+
+            
         }
 
         private void WireUpReservas()
         {
-            if (cb_ordenarSala.Checked && cb_ordenarFuncionario.Checked == false)
+            if (cb_ordenarSala.Checked && cb_ordenarFuncionario.Checked == false) // Apenas checkBox sala checked
             {
 
                 SalaModel selecionado = (SalaModel)combox_SalaFuncionario.SelectedItem;
@@ -109,8 +120,10 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
                 lb_reserva.DataSource = reservas;
                 lb_reserva.DisplayMember = "DescricaoPorSala";
 
+
+                btn_apagarReserva.Enabled = true;
             }
-            else if (cb_ordenarFuncionario.Checked && cb_ordenarSala.Checked == false)
+            else if (cb_ordenarFuncionario.Checked && cb_ordenarSala.Checked == false) // Apenas checkBox funcionario checked
             {
 
                 FuncionarioModel selecionado = (FuncionarioModel)combox_SalaFuncionario.SelectedItem;
@@ -120,10 +133,13 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
                 lb_reserva.DataSource = reservas;
                 lb_reserva.DisplayMember = "DescricaoPorFuncionario";
 
+
+                btn_apagarReserva.Enabled = true;
             }
-            else
+            else // Nenhum tiver checked / etc?
             {
                 lb_reserva.DataSource = null;
+                btn_apagarReserva.Enabled = false;
             }
         }
 

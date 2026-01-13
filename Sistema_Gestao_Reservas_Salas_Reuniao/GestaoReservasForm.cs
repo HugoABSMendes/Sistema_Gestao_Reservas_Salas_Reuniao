@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace Sistema_Gestao_Reservas_Salas_Reuniao
 {
@@ -20,8 +21,8 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
         public GestaoReservasForm()
         {
             InitializeComponent();
-            dtp_dataInicioReserva.CustomFormat = "MM/dd/yyyy                        HH:mm:ss";
-            dtp_dataFimReserva.CustomFormat = "MM/dd/yyyy                       HH:mm:ss";
+            dtp_dataInicioReserva.CustomFormat = "dd/MM/yyyy                            HH:mm";
+            dtp_dataFimReserva.CustomFormat = "dd/MM/yyyy                            HH:mm";
 
 
             WireUpLists();
@@ -41,11 +42,13 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
             {
                 btn_editarFuncionario.Enabled = false;
                 btn_apagarFuncionario.Enabled = false;
+                btn_criarReserva.Enabled = false;
             }
             else
             {
                 btn_editarFuncionario.Enabled = true;
                 btn_apagarFuncionario.Enabled = true;
+                btn_criarReserva.Enabled = true;
             }
 
             //---Salas---
@@ -59,11 +62,13 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
             {
                 btn_editarSala.Enabled = false;
                 btn_apagarSala.Enabled = false;
+                btn_criarReserva.Enabled = false;
             }
             else
             {
                 btn_editarSala.Enabled = true;
                 btn_apagarSala.Enabled = true;
+                btn_criarReserva.Enabled = true;
             }
 
         }
@@ -73,7 +78,7 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
             this.Close();
         }
 
-        //---------
+        //---Funcionario---
 
         private void btn_editarFuncionario_Click(object sender, EventArgs e)
         {
@@ -94,11 +99,20 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
         {
             FuncionarioModel selecionado = (FuncionarioModel)lb_funcionario.SelectedItem;
 
-            sqlConnector.RemoverFuncionario(selecionado);
-            WireUpLists();
+
+            if (sqlConnector.ListarReservasPorFuncionario(selecionado).Count != 0)
+            {
+                MessageBox.Show("O funcionário tem reservas a seu nome. Para o apagar, terá de apagar as reservas primeiro!", "Erro!");
+            }
+            else
+            {
+                sqlConnector.RemoverFuncionario(selecionado);
+                WireUpLists();
+            }
+                
         }
 
-        //---------
+        //---Salas---
 
         private void btn_criarSala_Click(object sender, EventArgs e)
         {
@@ -118,9 +132,18 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
         {
             SalaModel selecionado = (SalaModel)lb_sala.SelectedItem;
 
-            sqlConnector.RemoverSala(selecionado);
-            WireUpLists();
+            if (sqlConnector.ListarReservasPorSala(selecionado).Count != 0)
+            {
+                MessageBox.Show("A sala tem reservas marcadas. Para apagar a sala, terá de apagar as reservas primeiro!", "Erro!");
+            }
+            else
+            {
+                sqlConnector.RemoverSala(selecionado);
+                WireUpLists();
+            }
         }
+
+        //-------Reservas------
 
         private void btn_criarReserva_Click(object sender, EventArgs e)
         {
@@ -131,14 +154,38 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao
                     if (dtp_dataInicioReserva.Value <= dtp_dataFimReserva.Value)
                     {
 
+                        bool output = true;
+
                         FuncionarioModel funcSelecionado = (FuncionarioModel)lb_funcionario.SelectedItem;
                         SalaModel salaSelecionado = (SalaModel)lb_sala.SelectedItem;
 
-                        ReservaModel model = new ReservaModel(funcSelecionado.IdFuncionario, salaSelecionado.IdSala, dtp_dataInicioReserva.Value, dtp_dataFimReserva.Value);
+                        ReservaModel model = new ReservaModel(funcSelecionado.IdFuncionario, salaSelecionado.IdSala, dtp_dataInicioReserva.Value,
+                            dtp_dataFimReserva.Value);
 
-                        sqlConnector.ReservarSala(model);
+                        //Verificar se a nova reserva está dentro (da data) de outra reserva já feita na sala linkada à reserva
+                        List<ReservaModel> verificarReservas = sqlConnector.ListarReservasPorSala(salaSelecionado);
+                        foreach (ReservaModel i in verificarReservas) 
+                        {
+                            if ((model.DataHoraInicio >= i.DataHoraInicio && model.DataHoraInicio < i.DataHoraFim) ||
+                                (model.DataHoraFim > i.DataHoraInicio && model.DataHoraFim <= i.DataHoraFim) ||
+                                (model.DataHoraInicio < i.DataHoraInicio && model.DataHoraFim > i.DataHoraFim))
+                            {
+                                
 
-                        MessageBox.Show("Reserva criada com Sucesso!","Sucesso!");
+                                output = false;      
+                            }
+                        }
+                        if (output == true)
+                        {
+                            sqlConnector.ReservarSala(model);
+
+                            MessageBox.Show("Reserva criada com Sucesso!", "Sucesso!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Já existe uma reserva dentro da data especificada na sala selecionada", "Erro!");
+                        }
+                        
 
                     }
                     else

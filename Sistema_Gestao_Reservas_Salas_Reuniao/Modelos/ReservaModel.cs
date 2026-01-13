@@ -18,11 +18,26 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao.Modelos
 
         public DateTime DataHoraFim { get; set; }
 
+        private string DataHoraInicioFormat
+        {
+            get
+            {
+                return $"{DataHoraInicio.Day}/{DataHoraInicio.Month}/{DataHoraInicio.Year}  {DataHoraInicio.Hour}:{DataHoraInicio.Minute}";
+            }
+        }
+        private string DataHoraFimFormat
+        {
+            get
+            {
+                return $"{DataHoraFim.Day}/{DataHoraFim.Month}/{DataHoraFim.Year}  {DataHoraFim.Hour}:{DataHoraFim.Minute}";
+            }
+        }
+
         public string DescricaoPorFuncionario
         {
             get
             {
-                return $"Id Funcionário: {IdFuncionario}, Id Sala: {IdSala} | Início: {DataHoraInicio}, Fim: {DataHoraFim}";
+                return $"Id Funcionário: {IdFuncionario}, Id Sala: {IdSala} | Início: {DataHoraInicioFormat} | Fim: {DataHoraFimFormat}";
             }
         }
 
@@ -30,7 +45,7 @@ namespace Sistema_Gestao_Reservas_Salas_Reuniao.Modelos
         {
             get
             {
-                return $"Id Sala: {IdSala}, Id Funcionário: {IdFuncionario} | Início: {DataHoraInicio}, Fim: {DataHoraFim}";
+                return $"Id Sala: {IdSala}, Id Funcionário: {IdFuncionario} | Início: {DataHoraInicioFormat} | Fim: {DataHoraFimFormat}";
             }
         }
 
